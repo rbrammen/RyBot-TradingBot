@@ -44,6 +44,7 @@ def buy_or_sell_voo(cash_balance, shares_of_voo, close_price_voo_eod, close_pric
         print('You do not have enough money to buy more VOO')
     else:
         print('You do not have any shares of VOO to sell')
+        cash_balance, shares_of_voo
 
 
 if __name__ == "__main__":
@@ -55,5 +56,5 @@ if __name__ == "__main__":
     print('Latest EOD close price of VOO:', close_price_voo_eod)
     print('Previous EOD close price of VOO:', close_price_voo_eod_prev)
     
-    buy_or_sell_voo(cash, shares, close_price_voo_eod, close_price_voo_eod_prev )
+    cash, shares = buy_or_sell_voo(cash, shares, close_price_voo_eod, close_price_voo_eod_prev )
     save_cash_and_shares(cash, shares)
