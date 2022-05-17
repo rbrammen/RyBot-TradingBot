@@ -8,12 +8,12 @@ from alpha_vantage.timeseries import TimeSeries
 try:
     ALPHA_VANTAGE_API_KEY = os.environ['ALPHA_VANTAGE_API_KEY']
 except KeyError:
-    raise RuntimeError('ALPHA_VANTAGE_API environmental variable not set, aborting')
+    raise RuntimeError('ALPHA_VANTAGE_API_KEY environmental variable not set, aborting')
 
 def get_cash_and_shares():
     with shelve.open('myfile.db') as database:
-        running_cash_balance = database['data'] #change to 10000 to 'reset' the running cash balance / change to d['data'] to keep running total
-        shares_of_voo = database'voo_shares'] #change to 0 to 'reset' the running cash balance / change to d['voo_shares'] to keep running total
+        running_cash_balance = database['data']  # change to 10000 to 'reset' the running cash balance / change to d['data'] to keep running total
+        shares_of_voo = database['voo_shares']  #change to 0 to 'reset' the running cash balance / change to d['voo_shares'] to keep running total
         return running_cash_balance, shares
 
 def save_cash_and_shares(running_cash_balance, shares):
@@ -44,16 +44,16 @@ def buy_or_sell_voo(cash_balance, shares_of_voo, close_price_voo_eod, close_pric
         print('You do not have enough money to buy more VOO')
     else:
         print('You do not have any shares of VOO to sell')
-    return cash_balance, shares_of_voo
+
 
 if __name__ == "__main__":
     cash, shares = get_cash_and_shares()
     close_price_voo_eod, close_price_voo_eod_prev = get_voo_prices()
-    cash, shares = buy_or_sell_voo(cash, shares, close_price_voo_eod, close_price_voo_eod_prev )
 
     print('Your cash balace is currently:', cash)
     print('You currently own', shares, 'shares of VOO')
     print('Latest EOD close price of VOO:', close_price_voo_eod)
     print('Previous EOD close price of VOO:', close_price_voo_eod_prev)
-
+    
+    buy_or_sell_voo(cash, shares, close_price_voo_eod, close_price_voo_eod_prev )
     save_cash_and_shares(cash, shares)
