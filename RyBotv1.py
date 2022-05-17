@@ -5,9 +5,9 @@ from alpha_vantage.timeseries import TimeSeries
 import time
 
 d = shelve.open('myfile.db')
-running_cash_balance = 10000 #change to 10000 to 'reset' the running cash balance / change to d['data'] to keep running total
+running_cash_balance = d['data'] #change to 10000 to 'reset' the running cash balance / change to d['data'] to keep running total
 #print(running_cash_balance)
-shares_of_voo = 0 #change to 0 to 'reset' the running cash balance / change to d['voo_shares'] to keep running total
+shares_of_voo = d['voo_shares'] #change to 0 to 'reset' the running cash balance / change to d['voo_shares'] to keep running total
 #print(running_cash_balance)
 d.close()
 
